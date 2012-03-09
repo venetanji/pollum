@@ -1,0 +1,8 @@
+.row
+  .span2
+    %ul.nav.nav-tabs.nav-stacked
+      - Reading::STATIONS.each do |station|
+        %li
+          %a= station.to_s.humanize.capitalize
+  .span10
+    .graph{'data-series' => Reading.where(station: :Central).to_series.to_json}

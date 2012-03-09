@@ -2,4 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  reading:
+    metrics:
+      no2: "NO2"
+      so3: "SO3"
+      co: "CO"
+      rsp: "RSP"
+      fsp: "FSP"
+  

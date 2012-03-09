@@ -11,57 +11,28 @@
     = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
   
 %body
-  .topbar
-    .fill
+  .navbar.navbar-fixed-top
+    .navbar-inner
       .container
-        
-        - if @page
+        %a.btn.btn-navbar{'data-toggle' => "collapse", 'data-target' => ".nav-collapse"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.brand Pollum
+        .nav-collapse
           %ul.nav
-            %li= link_to t(".dashboard"), dashboard_path
-            %li.page_name
-              %h4= link_to @page.name, @page.link, target: "_blank"
-            - Navigation.page_actions.each do |menu_item|
-              %li{class: params[:action].to_sym == menu_item ? 'active' : ''}
-                = link_to t("pages.page.#{menu_item}"), send("#{menu_item}_page_path")
-
-        - else
-          %ul.nav
-            - Navigation.top_menu(params[:controller]).each do |menu_item|
-              %li{class: params[:action].to_sym == menu_item ? 'active' : ''}
-                = link_to t(".#{menu_item}"), send("#{menu_item}_path")
-            - if logged_in? && current_user.admin?
-              - Navigation.admin_actions.each do |menu_item|
-                %li{class: params[:action].to_sym == menu_item ? 'active' : ''}
-                  = link_to t(".#{menu_item}"), send("admin_#{menu_item}_path")
-
-        %p.login_box.pull-right
-          - if logged_in?
-            = fb_name current_user
-            |
-            %small= link_to t('.logout'), logout_path, class: 'logout'
-          - else
-            %a.login{:href => "#"}= t(".login")
-            
+            %li= link_to 'Stations'
+            %li= link_to 'Metrics'
+                    
   .container
     - flash.each do |type, message|
       %div.alert-message.fade.in{ "data-alert" => "alert", :class => twitterized_type(type) }
         %a.close{:href => "#"} ×
         %p= message
     = yield
-  %footer
-    .container
-      %p.pull-right
-        %small= t("developed_by")
-        %strong 83bits
-  #fb-root
-  :javascript
-    window.fbAsyncInit = function() {
-      FB.init({appId: '#{FACEBOOK[:app_id]}', status: true, cookie: true, xfbml: true, oauth: true});
-      $('#fb-root').trigger("FBloaded");
-    };
-    (function() {
-      var e = document.createElement('script'); e.async = true;
-      e.src = document.location.protocol +
-        '//connect.facebook.net/en_US/all.js';
-      document.getElementById('fb-root').appendChild(e);
-    }());
+    %footer
+      .container
+        %p.pull-right
+          %small= t("developed_by")
+          %strong 83bits
+
