@@ -31,7 +31,7 @@ class Reading
         page = agent.get(station_url(station))
         page.root.css("tr[bgcolor='#E1E8E0']").each do |row|
           cells = row.xpath('td')
-          time = Time.parse(cells.first.text)
+          time = Time.zone.parse(cells.first.text)
           cells[1..6].each_with_index do |value, i|
             next if value.text =~ /--/
             reading = new(station: station, time: time, metric: METRICS[i], value: value.text) 
