@@ -5,6 +5,7 @@ en:
   reading:
     metrics:
       no2: "NO2"
+      o3: "O3"
       so3: "SO3"
       co: "CO"
       rsp: "RSP"

@@ -1,6 +1,9 @@
 Pollum::Application.routes.draw do
   
   root :to => 'pollution#index'
+  get 'pollution/:station' => 'pollution#index', as: :pollution
+  get 'compare_pollution' => 'pollution#compare', as: :compare
+  get 'compare_pollution/:metric' => 'pollution#compare', as: :compare_metric
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

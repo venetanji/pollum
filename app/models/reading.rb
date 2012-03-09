@@ -10,7 +10,10 @@ class Reading
   
   identity :type => String
   
-  STATIONS = [:Central, :Causeway_Bay]
+  STATIONS = [:Central, :Central_Western, :Eastern, :Kwai_Chung,
+              :Kwun_Tong, :Sha_Tin, :Sham_Shui_Po, :Tai_Po, :Tap_Mun,
+              :Tsuen_Wan, :Tung_Chung, :Yuen_Long, :Mong_Kok,
+              :Causeway_Bay]
   METRICS  = [:no2, :o3, :so3, :co, :rsp, :fsp]
   
   after_initialize :set_id
@@ -49,8 +52,9 @@ class Reading
       end
       series_array = []
       series_hash.each_pair do |metric,values|
+        name = aggregator == :metric ? I18n.t("reading.metrics.#{metric}") : metric.to_s.humanize.titleize
         series_array << {
-          name: I18n.t("reading.metrics.#{metric}"),
+          name: name,
           # pointInterval: 24 * 3600 * 1000,
           # pointStart: values.keys.min.utc.to_i * 1000,
           data: format_serie(values)

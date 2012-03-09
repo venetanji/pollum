@@ -18,11 +18,17 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.brand Pollum
+        %a.brand{href: root_path} Pollum
         .nav-collapse
           %ul.nav
-            %li= link_to 'Stations'
-            %li= link_to 'Metrics'
+            %li{class: active_if(params[:action] == 'index')}
+              %a{href: root_path}
+                %i.icon-map-marker.icon-white
+                Stations
+            %li
+              %a{href: compare_path}
+                %i.icon-signal.icon-white
+                Metrics
                     
   .container
     - flash.each do |type, message|
@@ -30,9 +36,12 @@
         %a.close{:href => "#"} ×
         %p= message
     = yield
-    %footer
+    %footer.footer
       .container
         %p.pull-right
           %small= t("developed_by")
+          %strong ThoughtSauce
+          and
           %strong 83bits
+          
 

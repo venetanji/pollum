@@ -1,0 +1,12 @@
+- title "Compare Pollution metric #{I18n.t("reading.metrics.#{@metric}")}"
+.row
+  .span2
+    %ul.nav.nav-tabs.nav-stacked
+      - Reading::METRICS.each do |metric|
+        %li{class: active_if(metric == @metric)}
+          %a.location{href: compare_path(metric: metric)}
+            %i.icon-signal
+            = metric.to_s.humanize.titleize
+  .span10
+    %h1 Compare Pollution metric #{I18n.t("reading.metrics.#{@metric}")}
+    .graph{'data-series' => Reading.where(metric: @metric).to_series(:station).to_json}

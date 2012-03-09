@@ -28,4 +28,8 @@ module ApplicationHelper
         type.to_s
     end
   end
+  
+  def active_if(bool)
+    bool ? "active" :  nil
+  end
 end

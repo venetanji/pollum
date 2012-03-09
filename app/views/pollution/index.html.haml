@@ -1,8 +1,12 @@
+- title "Pollution in #{@station.to_s.humanize.titleize}"
 .row
   .span2
     %ul.nav.nav-tabs.nav-stacked
       - Reading::STATIONS.each do |station|
-        %li
-          %a= station.to_s.humanize.capitalize
+        %li{class: active_if(station == @station)}
+          %a.location{href: pollution_path(station: station)}
+            %i.icon-map-marker
+            = station.to_s.humanize.titleize
   .span10
-    .graph{'data-series' => Reading.where(station: :Central).to_series.to_json}
+    %h1 Pollution in #{@station.to_s.humanize.titleize}
+    .graph{'data-series' => Reading.where(station: @station).to_series.to_json}
