@@ -24,6 +24,7 @@ class Reading
 
   class << self
     def fetch_data
+      Time.zone = "Hong Kong"
       agent = Mechanize.new
       readings = {}
       STATIONS.each do |station|
