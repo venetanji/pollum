@@ -29,8 +29,8 @@ group :assets do
 end
 
 group :development do
-  gem 'pry', '~> 0.9.7.4'
-  gem "pry-rails", "~> 0.1.1"
+  gem 'pry', '~> 0.9.8.4'
+  gem "pry-rails", "~> 0.1.6"
 end
 
 
